@@ -1,0 +1,147 @@
+/*
+Theme Name: Hold on Tide Theme
+Author: ALEXEJ Conception
+Description: Child Theme for Hold on Tide base on Hello Elementor
+Version: 0.1
+Template: hello-elementor
+*/
+
+/* #region Font-Stack */
+@use 'fonts/fonts.scss';
+$font-stack: 'PT Sans',
+'Helvetica Neue',
+'Helvetica',
+'Arial',
+sans-serif;
+
+/* #region Font STack */
+$primary: var(--e-global-color-primary);
+$secondary: var(--e-global-color-secondary);
+$text: var(--e-global-color-text);
+$accent: var(--e-global-color-accent);
+$background: var(--e-global-color-cdc87d9);
+$button: var(--e-global-color-ed573d0);
+$boulder: var(--e-global-color-8a5d815);
+$white: #fff;
+/* #endregion Font STack */
+%pretty-button {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+    &:hover {
+        color: $primary;
+        background-color: $accent;
+        border-color: $accent;
+    }
+}
+
+.elementor-widget-container {
+    a.link-white {
+        color: $white;
+        font-size: 18px;
+        &:hover {
+            color: $primary;
+            font-size: 18px;
+        }
+    }
+    a.link-dark {
+        color: $primary;
+        font-size: 18px;
+
+        &:hover {
+            color: $accent;
+            font-size: 18px;
+        }
+    }
+}
+/* #region Header Styles */
+header {
+    .elementor-element {
+        .header-info-box {
+            background-image: url(assets/hero-info-box.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: top center;
+        }
+    }
+}
+/* #endregion Header Styles */
+/* #region Frontpage Loop */
+.hot-blog-loop-container .hot-blog-loop {
+    border-style: solid;
+    border-width: 5px;
+    /* Rahmenbreite */
+    border-color: $white;
+    /* wichtig. einfach so lassen */
+    border-image: url("assets/blog-border.SVG");
+    /* bestenfalls eine SVG Datei */
+    border-image-slice: 5;
+    /* Der "Zoom" der Grafik. Umso größer der Wert, desto größer werden die Rahmenelemente angezeigt, wenn vorhanden */
+}
+/* #endregion Frontpage Loop */
+
+/* #region Anpassung Region FAQ Sektion */
+.elementor-widget-container {
+    details {
+        summary {
+            h3 {
+                color: $white;
+            }
+        }
+    }
+}
+/* #endregion Anpassung Region FAQ Sektion */
+
+/* #region Dr Plano Styling */
+/* #region Kursbuchung Anpassungen */
+/* IDs 
+Schnupperkurs=403435230
+Kindergeburtstag=326526104
+*/
+
+/*
+.drp-course-list-item-id-403435230 .drp-course-list-item-image {
+    background-image: url('<url_vom_bild>') !important;
+}
+.drp-course-list-item-id-326526104 .drp-course-list-item-image {
+    background-image: url('<url_vom_bild>') !important;
+}
+*/
+
+/* #endregion Kursbuchung Anpassungen */
+/* #region Contact Field */
+#drp-booking {
+    .drp-content {
+        .drp-gift-card {
+            .drp-gift-card-contact-name {
+                color: $primary;
+                font-size: 18px;
+            }
+            .drp-gift-card-contact-email {
+                color: $primary;
+                font-size: 18px;
+                a {
+                    color: $primary;
+                    font-size: 18px;
+                }
+            }
+            .drp-gift-card-contact-phone {
+                color: $primary;
+                font-size: 18px;
+            }
+        }
+    }
+}
+/* #endregion Contact Field */
+/* #endregion Dr Plano Styling */
+/* #region Event Kalender */
+.em.em-modal .em-modal-default {
+    form {
+        .em-search-submit {
+            button.em-search-submit {
+                @extend %pretty-button;
+            }
+        }
+    }
+}
+/* #endregion Event Kalender */

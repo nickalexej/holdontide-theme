@@ -1,0 +1,57 @@
+/*
+LoginPage Styling
+Author: ALEXEJ Conception
+*/
+
+/* Color Stack */
+
+$primary: #0d2933;
+$secondary: #19608B;
+$accent: #C4A68D;
+$button: #19608B;
+$boulder: #2DBDC6;
+$black: #000;
+$gray: #293041;
+$white: #fff;
+$background: #F7E9DE;
+
+body {
+    background-image: url(/wp-content/uploads/2024/07/hot-hero-news.jpg);
+    background-position: center;
+    background-size: cover;
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.729);
+}
+.login {
+    background-color: $background;
+    color: $accent;
+    h1 {
+        a {
+            background-image: url(/wp-content/uploads/2024/05/hot-logo.png);
+            background-size: contain;
+            width: 309px;
+            height: 50px;
+        }
+    }
+    a {
+        color: $accent;
+        &:hover {
+            color: $white;
+        }
+    }
+    p#login-message {
+        background: $background;
+        border-left: 4px solid $accent;
+    }
+    p#nav {
+        a {
+            color:#fff;
+        }
+    }
+}
+
+#language-switcher {
+    display: none !important;
+}
+a {
+    color:  $white;
+}
