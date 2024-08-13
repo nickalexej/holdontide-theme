@@ -73,3 +73,44 @@ function hot_drplano() {
 }
 add_action('wp_head', 'hot_drplano', 50);
 #endregion Einbindung DR Plano 
+
+#region Boulderado API Call
+function boulderado_api_call() {
+    // API URL
+    $url = 'https://backend.boulderado.app/api/gethc?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lciI6IlRoZVRpZGVIZWR3aWdlbmtvb2cyODIzIn0.uLSXuX6dkmy8b3hJ97k_GQFsmDe5jtfB-JY_QVhM3Fk&sector=Boulderhalle';
+    
+    // Führe den API-Call mit deaktivierter SSL-Verifizierung aus
+    $response = wp_remote_get($url, array('sslverify' => false));
+    
+    // Prüfe, ob der API-Call erfolgreich war
+    if (is_wp_error($response)) {
+        $error_message = $response->get_error_message();
+        return "Es gab einen Fehler beim Abrufen der Daten: $error_message";
+    }
+
+    // Hole den Body-Inhalt (das JSON) aus der Antwort
+    $body = wp_remote_retrieve_body($response);
+    
+    // Dekodiere das JSON in ein PHP-Array
+    $data = json_decode($body, true);
+
+    // Prüfe, ob die Dekodierung erfolgreich war
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return 'Es gab ein Problem mit der JSON-Dekodierung.';
+    }
+
+    // Verarbeite die Daten und gebe sie aus
+    $output = '<div class="boulderado-api-data">';
+    foreach ($data as $key => $value) {
+        $output .= '<p><strong>' . esc_html($key) . ':</strong> ' . esc_html($value) . '</p>';
+    }
+    $output .= '</div>';
+
+    return $output;
+}
+
+function register_boulderado_shortcode() {
+    add_shortcode('boulderado_api', 'boulderado_api_call');
+}
+add_action('init', 'register_boulderado_shortcode');
+#endregion Boulderado API Call 
