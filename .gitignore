@@ -1,5 +1,6 @@
 # Wordpress - ignore core, configuration, examples, uploads and logs.
 # https://github.com/github/gitignore/blob/main/WordPress.gitignore
+.DS_Store
 
 # Core
 #
@@ -53,3 +54,4 @@ wp-config.php
 
 #VS Code
 .vscode
+*.code-workspace
