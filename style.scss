@@ -145,3 +145,22 @@ Kindergeburtstag=326526104
     }
 }
 /* #endregion Event Kalender */
+
+/* #region Boulderado Counter */
+#boulder-counter {
+    position:fixed;
+    height: auto;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    background-color: $primary;
+    color:#fff;
+    padding:10px;
+    text-align:center;
+    font-size:16px;
+    font-style: $font-stack;
+    border-radius: 10px;
+    z-index: 200;
+}
+
+/* #endregion Boulderado Counter */
