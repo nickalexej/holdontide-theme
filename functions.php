@@ -76,12 +76,35 @@ add_action('wp_head', 'hot_drplano', 50);
 #endregion Einbindung DR Plano 
 
 #region Boulderado API Call
+// Call Boulderado API & Server Side Proxy for API Call
+function fetch_boulder_counter_data() {
+    $url = 'https://backend.boulderado.app/api/gethc?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lciI6IlRoZVRpZGVIZWR3aWdlbmtvb2cyODIzIn0.uLSXuX6dkmy8b3hJ97k_GQFsmDe5jtfB-JY_QVhM3Fk&sector=Boulderhalle';
+//TODO: Script & Server auf SSL Abruf updaten
+    $args = array(
+        'sslverify' => false,  // SSL-Zertifikatsüberprüfung deaktivieren
+    );
+
+    $response = wp_remote_get($url, $args);
+
+    if (is_wp_error($response)) {
+        echo 'Fehler: ' . $response->get_error_message();
+        die();
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    echo $body;
+    die();
+}
+add_action('wp_ajax_get_boulder_counter', 'fetch_boulder_counter_data');
+add_action('wp_ajax_nopriv_get_boulder_counter', 'fetch_boulder_counter_data');
+
 // Einbinde von Script
 function enqueue_boulder_counter_script() {
     wp_enqueue_script('boulder-counter-script', get_stylesheet_directory_uri() . '/js/boulder-counter.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_boulder_counter_script');
 
+//Add HTML to Footer
 function add_boulder_counter_div() {
     echo '<div id="boulder-counter">Lade Besucherzahlen...</div>';
 }

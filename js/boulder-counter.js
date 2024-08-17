@@ -1,25 +1,19 @@
-jQuery(document).ready(function ($) {
+document.addEventListener('DOMContentLoaded', function () {
     function updateBoulderCounter() {
-        $.ajax({
-            url: 'https://backend.boulderado.app/api/gethc?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lciI6IlRoZVRpZGVIZWR3aWdlbmtvb2cyODIzIn0.uLSXuX6dkmy8b3hJ97k_GQFsmDe5jtfB-JY_QVhM3Fk&sector=Boulderhalle',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
+        fetch('/wp-admin/admin-ajax.php?action=get_boulder_counter')
+            .then(response => response.json())
+            .then(data => {
+                const counterElement = document.getElementById('boulder-counter');
                 if (data && data.counter !== undefined) {
-                    $('#boulder-counter').text('Aktuelle Besucher: ' + data.counter);
+                    counterElement.textContent = 'Aktuelle Besucher: ' + data.counter;
                 } else {
-                    $('#boulder-counter').text('Daten konnten nicht geladen werden');
+                    counterElement.textContent = 'Daten konnten nicht geladen werden';
                 }
-            },
-            error: function () {
-                $('#boulder-counter').text('Daten konnten nicht geladen werden');
-            }
-        });
+            })
+            .catch(error => {
+                document.getElementById('boulder-counter').textContent = 'Daten konnten nicht geladen werden';
+            });
     }
 
-    // Initiales Laden der Daten
     updateBoulderCounter();
-
-    // Aktualisieren alle 5 Minuten
-    setInterval(updateBoulderCounter, 300000); // 300000 Millisekunden = 5 Minuten
 });
