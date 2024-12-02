@@ -73,7 +73,7 @@ header {
     /* Rahmenbreite */
     border-color: $white;
     /* wichtig. einfach so lassen */
-    border-image: url("assets/blog-border.SVG");
+    border-image: url("assets/blog-border.svg");
     /* bestenfalls eine SVG Datei */
     border-image-slice: 5;
     /* Der "Zoom" der Grafik. Umso größer der Wert, desto größer werden die Rahmenelemente angezeigt, wenn vorhanden */
@@ -97,17 +97,20 @@ header {
 /* IDs 
 Schnupperkurs=403435230
 Kindergeburtstag=326526104
+Gutscheine=gift-card
 */
 
 /*
 .drp-course-list-item-id-403435230 .drp-course-list-item-image {
     background-image: url('<url_vom_bild>') !important;
 }
-.drp-course-list-item-id-326526104 .drp-course-list-item-image {
-    background-image: url('<url_vom_bild>') !important;
-}
 */
-
+.drp-course-list-item-id-326526104 .drp-course-list-item-image {
+    background-image: url('assets/img/kindergeburtstag.jpg') !important;
+}
+.drp-course-list-item-gift-card .drp-course-list-item-image {
+    background-image: url('assets/img/gutschein.jpg') !important;
+}
 /* #endregion Kursbuchung Anpassungen */
 /* #region Contact Field */
 #drp-booking {
